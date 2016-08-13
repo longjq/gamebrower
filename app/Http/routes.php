@@ -14,7 +14,7 @@
 Route::group(['middleware'=>'ApiGuard'],function(){
     Route::post('/api','GameUserController@apiGurid');
 });
-Route::group(['prefix' => 'admin','middleware'=>'ApiGuard'], function(){
+Route::group(['prefix' => 'admin'], function(){
     Route::get('login', function(){
         return view('login');
     });
@@ -227,8 +227,17 @@ Route::get('/xxx', function(){
     ]);
     return 111;
 });
-
-
+Route::get('/form', function() {
+   return view('/welcome');
+});
+Route::get('/rp', function() {
+    $items = \App\Models\Game::all();
+    foreach($items as $item){
+        $title = $item->title;
+        $item->icon_url = 'http://gb.wgchao.com/images/icon/'.$title.'.jpg';
+        $item->save();
+    }
+});
 // 批量修改title
 Route::get('/replace', function(){
 

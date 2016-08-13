@@ -39,6 +39,9 @@
         <div class="container">
             <div class="content">
                 <div class="title">Laravel 5</div>
+                {!! Form::open(array('url' => '/form')) !!}
+                //
+                {!! Form::close() !!}
             </div>
         </div>
     </body>

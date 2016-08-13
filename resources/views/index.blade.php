@@ -45,16 +45,16 @@
         <section id="con-1" style="margin-bottom:50px;">
             <div class="banner-top">
                 <a data-id="38"
-                   data-display="0"
-                   data-title="Striker 1945"
-                   href="http://ga.wgchao.com/g/yx8/djz/index.html"
-                   data-icon="http://ga.wgchao.com/g/yx8/djz/icon.png"
+                   data-display="1"
+                   data-title="X Kill"
+                   href="http://www.a10.com/adventure-games/x-kill?play=true"
+                   data-icon="http://gb.wgchao.com/images/icon/X Kill.jpg"
                    data-stars="4"
-                   data-hot="68745"
-                   data-from="yx8.com"
+                   data-hot="165124"
+                   data-from="A10.com"
                    data-hot_label="{{ trans('index.hot') }}"
                    >
-                    <img src="{!! asset('images/banner1.png') !!}" alt="">
+                    <img src="{!! asset('images/banner/banner1.jpg') !!}" alt="">
                 </a>
             </div>
             <header>
@@ -77,7 +77,7 @@
 
                                 <figure class="cover">
 
-                                    <img src="{!! asset('images/blank.gif') !!}"
+                                    <img data-echo="{!! asset($item->icon_url) !!}" src="{!! asset('images/blank.gif') !!}"
                                          style="opacity: 1; transition: opacity 0.5s linear 0s; -webkit-transition: opacity 0.5s linear 0s;">
                                 </figure>
                                 <div class="meta">
@@ -112,30 +112,30 @@
                 <table style="width: 100%;">
                     <tr>
                         <td align="right" style="text-align:center;width:45%;">
-                            <a data-id="45"
-                               data-display="1"
-                               data-title="Baccarat"
-                               href="http://ga.wgchao.com/g/zzf/bdx/index.html"
-                               data-icon="http://ga.wgchao.com/g/zzf/bdx/icon.jpg"
+                            <a data-id="62"
+                               data-display="0"
+                               data-title="Ninja Kid Vs Zombies"
+                               href="http://www.yiv.com/Ninja-Kid-Vs-Zombies"
+                               data-icon="http://gb.wgchao.com/images/icon/Ninja Kid Vs Zombies.jpg"
                                data-stars="4"
-                               data-hot="32214"
-                               data-from="yx8.com"
+                               data-hot="165124"
+                               data-from="yiv.com"
                                data-hot_label="{{ trans('index.hot') }}">
-                            <img src="{!! asset('images/banner2.png') !!}" alt="">
+                            <img src="{!! asset('images/banner/banner2.jpg') !!}" alt="">
                             </a>
                         </td>
 
                         <td align="left" style="text-align:center;width:45%;">
-                            <a  data-id="51"
+                            <a  data-id="48"
                                 data-display="0"
-                                data-title="Monster Connect"
-                                href="http://ga.wgchao.com/g/zzf/gwlm/index.html"
-                                data-icon="http://ga.wgchao.com/g/zzf/gwlm/icon.png"
+                                data-title="Katana Fruits"
+                                href="http://www.yiv.com/Katana-Fruits"
+                                data-icon="http://gb.wgchao.com/images/icon/Katana Fruits.jpg"
                                 data-stars="5"
-                                data-hot="47463"
-                                data-from="yx8.com"
+                                data-hot="165124"
+                                data-from="yiv.com"
                                 data-hot_label="{{ trans('index.hot') }}">
-                                <img src="{!! asset('images/banner3.png') !!}" alt="">
+                                <img src="{!! asset('images/banner/banner3.jpg') !!}" alt="">
                             </a>
                         </td>
                     </tr>
@@ -155,7 +155,7 @@
                                data-icon="{{ $item->icon_url }}"
                                data-stars="{{ $item->stars }}"
                                data-hot="{{ intval($item->hot_base) + intval($item->hot) }}"
-                               data-from="yx8.com"
+                               data-from="{{ $item->from }}"
                                data-hot_label="{{ trans('index.hot') }}"
                             >
 
@@ -198,7 +198,7 @@
             </header>
             <div class="list" id="list_history">
                 <h3 id="history-empty">
-                  <p><img src="{{ asset('images/cry.png') }}" alt=""></p>
+                  <p class="text-center"><img width="50%" src="{{ asset('images/empty.jpg') }}" alt=""></p>
                    <br>
                   You Don't Have Play Any Games.
                 </h3>
@@ -315,7 +315,11 @@
 
 
             sendNative('functionOpen', item, function (responseData) {
-                $hots.html(Number(hotNumber) + 1);
+
+                $.get('/v/hot',{"game_id":item.game_id,"d":new Date().getTime()},function(d){
+                    var data = JSON.parse(d);
+                    $hots.html(Number(hotNumber) + data.i);
+                });
                 var tpl = $('#item_tpl').html();
                 index = utils.itemExists(item_history.game_id, play_history);
                 if (index === false) {

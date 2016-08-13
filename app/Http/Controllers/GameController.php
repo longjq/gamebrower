@@ -206,7 +206,7 @@ class GameController extends Controller
             $gameId = $request->input('game_id');
             if ($gameId){
                 $incr = rand(1,5);
-                $rows = Game::where('id',$gameId)->increment('hot', $incr);
+                $rows = Game::where('id',$gameId)->increment('hot');
                 if ($rows){
                     return json_encode([
                         'rs'=>1,

@@ -3,5 +3,5 @@
  */
 $(function(){
     // 表格隔行变色
-    $("table tr:even").addClass('altrow');
+    // $("table tr:even").addClass('altrow');
 });

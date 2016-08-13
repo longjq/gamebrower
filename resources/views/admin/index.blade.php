@@ -73,8 +73,8 @@
                     'winHeight': 547
                 },
                 'leshiwang': {
-                    'title': '乐视网',
-                    'url': 'http://www.letv.com/cooperation/qq.html',
+                    'title': '游戏列表',
+                    'url': '/admin/games',
                     'winWidth': 842,
                     'winHeight': 547
                 },
