@@ -8,4 +8,6 @@ class GameUser extends Model
 {
     protected $table = 'game_users';
     protected $guarded = ['id'];
+
+
 }
